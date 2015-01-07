@@ -29,11 +29,13 @@ public class BoxOfficeActivityWithRetrofit extends Activity {
     @InjectView(R.id.myListView)
     ListView myListView;
 
-    @OnClick(R.id.connectButton)
+    
+    /*@OnClick(R.id.connectButton)
     public void connectToService(View v)
     {
         rottenTomatoesService.getMoviesFromServer(new RottenTomatoesMoviesResponseHandler() );
     }
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +46,12 @@ public class BoxOfficeActivityWithRetrofit extends Activity {
 
 
     }
-
+    
 	protected void setUpRetroFit()
 	{
 		 restAdapter = new RestAdapter.Builder().setEndpoint(RottenTomatoesRetrofitClient.API_BASE_URL).build();
 		 rottenTomatoesService = restAdapter.create(RottenTomatoesRetrofitClient.RottenTomatoesService.class);
+         rottenTomatoesService.getMoviesFromServer(new RottenTomatoesMoviesResponseHandler());
 	}
 
     public class RottenTomatoesMoviesResponseHandler implements Callback<Movies>
