@@ -13,47 +13,38 @@
         android:layout_height="75dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:contentDescription="poster image"
+        android:adjustViewBounds="true"
         android:src="@drawable/movie_poster" />
 
     <TextView
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The Dark Knight"
-        android:textSize="14sp"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/posterImage" />
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/posterImage"
+        android:text="The Dark Knight"
+        android:textStyle="bold"
+        android:textSize="12sp" />
 
     <TextView
-        android:id="@+id/criticsConensusText"
+        android:id="@+id/cast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:text="Christian Bale, Joseph-Gordon Levitt"
-        android:textSize="12sp"
         android:layout_below="@+id/titleText"
-        android:layout_alignLeft="@+id/titleText"
-        android:layout_alignStart="@+id/titleText" />
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/posterImage"
+        android:gravity="left"
+        android:text="Christian Bale, Joseph-Gordon Levitt"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/criticsScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="93%"
-        android:textSize="12sp"
-        android:layout_below="@+id/criticsConensusText"
-        android:layout_alignLeft="@+id/titleText"
-        android:layout_alignStart="@+id/titleText" />
-
-    <TextView
-        android:id="@+id/audienceScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="83%"
-        android:textSize="12sp"
-        android:layout_below="@+id/criticsScore"
-        android:layout_alignLeft="@+id/titleText"
-        android:layout_alignStart="@+id/titleText" />
+        android:layout_below="@+id/cast"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/posterImage"
+        android:textSize="12sp" />
 
 </RelativeLayout>

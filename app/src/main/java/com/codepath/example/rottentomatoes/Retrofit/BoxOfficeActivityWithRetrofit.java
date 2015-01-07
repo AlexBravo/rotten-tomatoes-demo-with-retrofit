@@ -29,13 +29,6 @@ public class BoxOfficeActivityWithRetrofit extends Activity {
     @InjectView(R.id.myListView)
     ListView myListView;
 
-    
-    /*@OnClick(R.id.connectButton)
-    public void connectToService(View v)
-    {
-        rottenTomatoesService.getMoviesFromServer(new RottenTomatoesMoviesResponseHandler() );
-    }
-    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +36,18 @@ public class BoxOfficeActivityWithRetrofit extends Activity {
         setContentView(R.layout.activity_box_office_activity_with_retrofit);
         ButterKnife.inject(this);
 		setUpRetroFit();
+    }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        rottenTomatoesService.getMoviesFromServer(new RottenTomatoesMoviesResponseHandler());
     }
     
 	protected void setUpRetroFit()
 	{
 		 restAdapter = new RestAdapter.Builder().setEndpoint(RottenTomatoesRetrofitClient.API_BASE_URL).build();
 		 rottenTomatoesService = restAdapter.create(RottenTomatoesRetrofitClient.RottenTomatoesService.class);
-         rottenTomatoesService.getMoviesFromServer(new RottenTomatoesMoviesResponseHandler());
 	}
 
     public class RottenTomatoesMoviesResponseHandler implements Callback<Movies>
@@ -61,10 +57,7 @@ public class BoxOfficeActivityWithRetrofit extends Activity {
 
         @Override
         public void success(Movies movies, Response response) {
-            Log.d( "test" ," we made it");
-
-            for(RTMovie aMovie : movies.moviesFromJSONToJavaList)
-            {
+            for(RTMovie aMovie : movies.moviesFromJSONToJavaList) {
                 adapter.add( aMovie );
             }
             myListView.setAdapter(adapter);

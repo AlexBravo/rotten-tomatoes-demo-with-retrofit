@@ -1,6 +1,7 @@
 package com.codepath.example.rottentomatoes.Retrofit;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,22 +48,25 @@ public class MyCustomArrayAdapter extends ArrayAdapter <RTMovie> {
 			myView = new ViewHolder( view );
 
 			view.setTag( myView );
-
-
         }
 		else
 		{
 			myView = (ViewHolder)view.getTag();
 		}
 
-
         myView.title.setText(movie.title);
-        myView.consensus.setText(movie.consensus);
-        myView.criticScore.setText("Critics Score: " +String.valueOf(movie.ratings.critics_score) );
-        myView.audienceScore.setText("Audience Score: "+String.valueOf(movie.ratings.audience_score));
+        String cast = "Cast: ";
+        for (int i = 0; i < movie.cast.size(); i++) {
+            cast += movie.cast.get(i).name;
+            if (i < movie.cast.size() - 1 ) {
+                cast += ", ";
+            }
+
+        }
+        myView.cast.setText(cast);
+                myView.criticScore.setText("Score: " +String.valueOf(movie.ratings.critics_score) );
 
         Picasso.with(getContext()).load(movie.posters.thumbnail).into(myView.posterImage);
-
 
         return  view;
     }
@@ -73,14 +77,14 @@ public class MyCustomArrayAdapter extends ArrayAdapter <RTMovie> {
 		@InjectView( R.id.titleText )
 		TextView title;
 
-		@InjectView( R.id.criticsConensusText )
-		TextView consensus;
+		@InjectView( R.id.cast )
+		TextView cast;
 
 		@InjectView( R.id.criticsScore  )
 		TextView criticScore;
 
-		@InjectView( R.id.audienceScore )
-		TextView audienceScore;
+		//@InjectView( R.id.audienceScore )
+		//TextView audienceScore;
 
 		@InjectView( R.id.posterImage )
 		ImageView posterImage;
